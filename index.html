@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamyres Nantes — Advocacia</title>
+<meta name="description" content="Tamyres Nantes — Advocacia. Assessoria jurídica personalizada, com ética, sigilo e atenção ao caso de cada cliente.">
+<meta property="og:title" content="Tamyres Nantes — Advocacia">
+<meta property="og:description" content="Assessoria jurídica personalizada, com ética e sigilo profissional.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F4EFE3;
+    --cream-soft: #FAF6EB;
+    --cream-deep: #EAE2CE;
+    --ink: #1C1F2E;
+    --ink-soft: #353B52;
+    --bronze: #9C7A45;
+    --bronze-deep: #7A5E32;
+    --bronze-light: #C9A973;
+    --warm-gray: #6E695C;
+    --line: rgba(28, 31, 46, 0.12);
+
+    --serif: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Manrope', system-ui, -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--bronze); color: var(--cream-soft); }
+
+  /* === NAV === */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(244, 239, 227, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--line);
+    transition: padding 0.3s ease;
+  }
+  .nav.scrolled { padding: 1rem 3rem; }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    font-style: italic;
+  }
+  .nav-logo span { color: var(--bronze); }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--bronze); }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--bronze);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  @media (max-width: 768px) {
+    .nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+  }
+
+  /* === HERO === */
+  .hero {
+    min-height: 100vh;
+    padding: 8rem 3rem 4rem;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: 'TN';
+    position: absolute;
+    right: -3rem;
+    bottom: -8rem;
+    font-family: var(--serif);
+    font-size: 28rem;
+    font-weight: 300;
+    color: var(--cream-deep);
+    line-height: 1;
+    z-index: 0;
+    font-style: italic;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin-bottom: 2rem;
+    font-weight: 500;
+    opacity: 0;
+    animation: fade-up 0.8s 0.1s ease forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--bronze);
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+    opacity: 0;
+    animation: fade-up 0.9s 0.2s ease forwards;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--bronze);
+  }
+  .hero-tagline {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 32rem;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+    opacity: 0;
+    animation: fade-up 0.9s 0.35s ease forwards;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fade-up 0.9s 0.45s ease forwards;
+  }
+  .hero-meta-item {
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    letter-spacing: 0.03em;
+  }
+  .hero-meta-item strong {
+    display: block;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+    font-size: 0.95rem;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fade-up 0.9s 0.55s ease forwards;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 1.75rem;
+    border-radius: 0;
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream-soft);
+  }
+  .btn-primary:hover {
+    background: var(--bronze-deep);
+    transform: translateY(-2px);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .btn-secondary:hover {
+    background: var(--ink);
+    color: var(--cream-soft);
+  }
+  .btn svg { width: 16px; height: 16px; }
+
+  .hero-portrait {
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fade-in 1.2s 0.3s ease forwards;
+  }
+  .portrait-frame {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    background: var(--cream-deep);
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .portrait-frame::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border: 1px solid var(--bronze);
+    z-index: -1;
+    transform: translate(12px, 12px);
+  }
+  .portrait-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--cream-deep) 0%, var(--cream-soft) 100%);
+    font-family: var(--serif);
+    font-size: 7rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--bronze);
+    letter-spacing: -0.05em;
+  }
+  .portrait-caption {
+    margin-top: 1.25rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 7rem 1.5rem 4rem;
+      gap: 3rem;
+    }
+    .hero::before { font-size: 18rem; right: -1rem; bottom: -4rem; }
+    .hero-portrait { max-width: 320px; margin: 0 auto; }
+  }
+
+  /* === SECTIONS === */
+  section {
+    padding: 7rem 3rem;
+    position: relative;
+  }
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--bronze);
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+    max-width: 24ch;
+  }
+  .section-title em { font-style: italic; color: var(--bronze); font-weight: 400; }
+
+  @media (max-width: 768px) {
+    section { padding: 5rem 1.5rem; }
+  }
+
+  /* === SOBRE === */
+  .sobre {
+    background: var(--cream-soft);
+    border-top: 0.5px solid var(--line);
+    border-bottom: 0.5px solid var(--line);
+  }
+  .sobre-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .sobre-text p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--ink-soft);
+    margin-bottom: 1.5rem;
+  }
+  .sobre-text p:first-of-type::first-letter {
+    font-family: var(--serif);
+    font-size: 4rem;
+    font-weight: 300;
+    float: left;
+    line-height: 0.85;
+    margin: 0.3rem 0.5rem 0 0;
+    color: var(--bronze);
+    font-style: italic;
+  }
+  .sobre-credentials {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 0.5px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .credential {
+    font-size: 0.82rem;
+    color: var(--warm-gray);
+    letter-spacing: 0.03em;
+  }
+  .credential strong {
+    display: block;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 900px) {
+    .sobre-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
+
+  /* === ÁREAS DE ATUAÇÃO === */
+  .areas { background: var(--cream); }
+  .areas-header {
+    max-width: 1100px;
+    margin: 0 auto 4rem;
+  }
+  .areas-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 0.5px solid var(--line);
+  }
+  .area-card {
+    background: var(--cream);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s ease;
+    cursor: default;
+    position: relative;
+  }
+  .area-card:hover { background: var(--cream-soft); }
+  .area-card:hover .area-number { color: var(--bronze); }
+  .area-number {
+    font-family: var(--serif);
+    font-size: 0.82rem;
+    color: var(--warm-gray);
+    letter-spacing: 0.15em;
+    margin-bottom: 1.25rem;
+    transition: color 0.3s;
+    font-style: italic;
+  }
+  .area-card h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+  .area-card p {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
+  /* === PROCESSO === */
+  .processo {
+    background: var(--ink);
+    color: var(--cream-soft);
+  }
+  .processo .section-eyebrow { color: var(--bronze-light); }
+  .processo .section-eyebrow::before { background: var(--bronze-light); }
+  .processo .section-title { color: var(--cream-soft); }
+  .processo .section-title em { color: var(--bronze-light); }
+  .processo-header {
+    max-width: 1100px;
+    margin: 0 auto 5rem;
+  }
+  .processo-intro {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+    color: rgba(250, 246, 235, 0.75);
+    max-width: 36rem;
+    margin-top: 1.5rem;
+  }
+  .steps {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    position: relative;
+  }
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: 5%;
+    right: 5%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--bronze) 20%, var(--bronze) 80%, transparent);
+    opacity: 0.4;
+  }
+  .step {
+    position: relative;
+  }
+  .step-num {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: 1px solid var(--bronze);
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--bronze-light);
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .step h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+  .step p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(250, 246, 235, 0.7);
+  }
+
+  @media (max-width: 768px) {
+    .steps { grid-template-columns: 1fr; gap: 3rem; }
+    .steps::before { display: none; }
+  }
+
+  /* === DIFERENCIAIS === */
+  .diferenciais { background: var(--cream-soft); }
+  .diferenciais-grid {
+    max-width: 1100px;
+    margin: 4rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2.5rem;
+  }
+  .diff-item {
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+  .diff-item h3 {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+  .diff-item p {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  /* === CONTATO === */
+  .contato {
+    background: var(--cream);
+    text-align: center;
+    padding: 8rem 3rem;
+  }
+  .contato-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .contato .section-eyebrow {
+    justify-content: center;
+  }
+  .contato .section-eyebrow::before { display: none; }
+  .contato h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .contato h2 em { font-style: italic; color: var(--bronze); }
+  .contato p {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+  }
+  .contato-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 2.5rem;
+    background: var(--bronze);
+    color: var(--cream-soft);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+  .contato-cta:hover {
+    background: var(--bronze-deep);
+    transform: translateY(-2px);
+  }
+  .contato-cta svg { width: 18px; height: 18px; }
+  .contato-info {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    font-size: 0.88rem;
+    color: var(--warm-gray);
+  }
+  .contato-info-item strong {
+    display: block;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 4px;
+    letter-spacing: 0.05em;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+  }
+
+  /* === FOOTER === */
+  footer {
+    background: var(--ink);
+    color: rgba(250, 246, 235, 0.7);
+    padding: 4rem 3rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 0.5px solid rgba(250, 246, 235, 0.1);
+  }
+  .footer-brand {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--cream-soft);
+    margin-bottom: 1rem;
+  }
+  .footer-brand span { color: var(--bronze-light); }
+  .footer-tag {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    max-width: 28rem;
+  }
+  .footer-col h4 {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bronze-light);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .footer-col a, .footer-col p {
+    display: block;
+    color: rgba(250, 246, 235, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    line-height: 1.9;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--bronze-light); }
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 2rem auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.78rem;
+    color: rgba(250, 246, 235, 0.5);
+  }
+  .footer-bottom .oab-note {
+    font-style: italic;
+    font-family: var(--serif);
+  }
+
+  @media (max-width: 768px) {
+    .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    footer { padding: 3rem 1.5rem 1.5rem; }
+    .contato { padding: 5rem 1.5rem; }
+    .contato-info { gap: 1.5rem; }
+  }
+
+  /* === ANIMATIONS === */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-logo">Tamyres <span>Nantes</span></div>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#areas">Áreas</a></li>
+    <li><a href="#processo">Atendimento</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Advocacia &amp; Consultoria Jurídica</div>
+    <h1>Tamyres <em>Nantes</em><br>Advogada</h1>
+    <p class="hero-tagline">Assessoria jurídica com escuta cuidadosa, técnica refinada e respeito ao tempo de cada caso.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>OAB/[UF] [000.000]</strong>Inscrição regular</div>
+      <div class="hero-meta-item"><strong>[Cidade] · [Estado]</strong>Atendimento presencial e remoto</div>
+    </div>
+    <div class="hero-cta">
+      <a href="https://wa.me/55[NUMERO]?text=Ol%C3%A1%2C%20vim%20pelo%20Instagram%20e%20gostaria%20de%20agendar%20uma%20consulta." class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.27 8.27 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23a7.39 7.39 0 0 1-1.38-1.71c-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.55-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.04 0 1.2.88 2.37 1 2.53.12.17 1.73 2.65 4.2 3.71.59.25 1.05.4 1.4.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+        Falar pelo WhatsApp
+      </a>
+      <a href="#areas" class="btn btn-secondary">Áreas de atuação</a>
+    </div>
+  </div>
+  <div class="hero-portrait">
+    <div class="portrait-frame">
+      <!-- SUBSTITUA o div abaixo por: <img src="caminho/para/foto.jpg" alt="Tamyres Nantes" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="portrait-placeholder">TN</div>
+    </div>
+    <p class="portrait-caption">[Inserir foto profissional]</p>
+  </div>
+</section>
+
+<section class="sobre" id="sobre">
+  <div class="sobre-grid">
+    <div>
+      <div class="section-eyebrow">Sobre</div>
+      <h2 class="section-title">Direito como <em>instrumento de clareza</em>.</h2>
+    </div>
+    <div class="sobre-text">
+      <p>Formada em Direito pela [Nome da Universidade], dedico minha atuação a oferecer assessoria jurídica personalizada, com escuta atenta e linguagem acessível. Acredito que cada caso carrega uma história única, e meu trabalho começa por compreendê-la antes de propor caminhos.</p>
+      <p>Minha prática combina rigor técnico e proximidade com o cliente — entendo que questões jurídicas, em geral, vêm acompanhadas de momentos delicados, e procuro conduzir cada processo com sensibilidade, transparência e responsabilidade.</p>
+      <div class="sobre-credentials">
+        <div class="credential"><strong>Formação</strong>Graduação em Direito — [Universidade]</div>
+        <div class="credential"><strong>Especialização</strong>[Pós-graduação / Especialização]</div>
+        <div class="credential"><strong>Inscrição OAB</strong>OAB/[UF] [000.000]</div>
+        <div class="credential"><strong>Atuação</strong>Presencial e online em todo o Brasil</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="areas" id="areas">
+  <div class="areas-header">
+    <div class="section-eyebrow">Áreas de atuação</div>
+    <h2 class="section-title">Atendimento <em>especializado</em> em frentes complementares.</h2>
+  </div>
+  <div class="areas-grid">
+    <div class="area-card">
+      <div class="area-number">— 01</div>
+      <h3>Direito de Família</h3>
+      <p>Divórcio, guarda, pensão alimentícia, união estável, inventário e partilha. Atendimento com sensibilidade ao contexto emocional envolvido.</p>
+    </div>
+    <div class="area-card">
+      <div class="area-number">— 02</div>
+      <h3>Direito Civil</h3>
+      <p>Contratos, indenizações, responsabilidade civil, direitos da personalidade e questões imobiliárias.</p>
+    </div>
+    <div class="area-card">
+      <div class="area-number">— 03</div>
+      <h3>Direito do Consumidor</h3>
+      <p>Defesa em relações de consumo, cobrança indevida, vícios de produto/serviço e negativação irregular.</p>
+    </div>
+    <div class="area-card">
+      <div class="area-number">— 04</div>
+      <h3>Direito Trabalhista</h3>
+      <p>Orientação ao trabalhador e ao empregador em rescisões, verbas, assédio, acordos e ações trabalhistas.</p>
+    </div>
+    <div class="area-card">
+      <div class="area-number">— 05</div>
+      <h3>Direito Previdenciário</h3>
+      <p>Aposentadorias, benefícios por incapacidade, pensão por morte, revisões e planejamento previdenciário.</p>
+    </div>
+    <div class="area-card">
+      <div class="area-number">— 06</div>
+      <h3>Consultoria Jurídica</h3>
+      <p>Análise preventiva de documentos, contratos e situações jurídicas — para decisões mais seguras antes do conflito.</p>
+    </div>
+  </div>
+</section>
+
+<section class="processo" id="processo">
+  <div class="processo-header">
+    <div class="section-eyebrow">Como atendo</div>
+    <h2 class="section-title">Um caminho <em>cuidadoso</em>, do primeiro contato à conclusão.</h2>
+    <p class="processo-intro">Cada etapa foi pensada para garantir transparência, escuta e direção clara. Sem promessas, sem pressa — apenas o passo a passo que a sua situação merece.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">i</div>
+      <h3>Primeiro contato</h3>
+      <p>Conversa inicial por WhatsApp ou direct para entender brevemente sua situação e agendar uma consulta — presencial ou online, conforme sua preferência.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">ii</div>
+      <h3>Consulta &amp; análise</h3>
+      <p>Encontro dedicado à escuta, análise dos documentos e elaboração de um parecer com os caminhos jurídicos possíveis, riscos e estimativas.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">iii</div>
+      <h3>Estratégia &amp; condução</h3>
+      <p>Definida a estratégia, conduzo o processo com atualizações periódicas e linguagem clara — você acompanha cada etapa sem juridiquês.</p>
+    </div>
+  </div>
+</section>
+
+<section class="diferenciais">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="section-eyebrow">Compromissos</div>
+    <h2 class="section-title">O que <em>orienta</em> meu trabalho.</h2>
+    <div class="diferenciais-grid">
+      <div class="diff-item">
+        <h3>Sigilo profissional</h3>
+        <p>Toda informação compartilhada é estritamente confidencial e protegida pelo dever ético de sigilo.</p>
+      </div>
+      <div class="diff-item">
+        <h3>Linguagem acessível</h3>
+        <p>Documentos, andamentos e estratégias explicados de forma clara — sem termos técnicos sem necessidade.</p>
+      </div>
+      <div class="diff-item">
+        <h3>Atenção ao caso</h3>
+        <p>Atendimento personalizado, com tempo dedicado a compreender o contexto único de cada cliente.</p>
+      </div>
+      <div class="diff-item">
+        <h3>Atualização constante</h3>
+        <p>Estudo e atualização contínuos em jurisprudência, doutrina e mudanças legislativas relevantes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contato" id="contato">
+  <div class="contato-inner">
+    <div class="section-eyebrow">Contato</div>
+    <h2>Vamos <em>conversar</em><br>sobre o seu caso.</h2>
+    <p>O primeiro passo é uma conversa. Me chame no WhatsApp e marcamos um horário para te ouvir com a atenção que a sua situação merece.</p>
+    <a href="https://wa.me/55[NUMERO]?text=Ol%C3%A1%2C%20Tamyres.%20Vim%20pelo%20Instagram%20e%20gostaria%20de%20agendar%20uma%20conversa." class="contato-cta">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.27 8.27 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23a7.39 7.39 0 0 1-1.38-1.71c-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.55-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.04 0 1.2.88 2.37 1 2.53.12.17 1.73 2.65 4.2 3.71.59.25 1.05.4 1.4.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+      Iniciar conversa no WhatsApp
+    </a>
+    <div class="contato-info">
+      <div class="contato-info-item">
+        <strong>WhatsApp</strong>
+        +55 (XX) 9XXXX-XXXX
+      </div>
+      <div class="contato-info-item">
+        <strong>E-mail</strong>
+        [contato@dominio.com]
+      </div>
+      <div class="contato-info-item">
+        <strong>Endereço</strong>
+        [Endereço do escritório]
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Tamyres <span>Nantes</span></div>
+      <p class="footer-tag">Advocacia e consultoria jurídica com escuta cuidadosa, técnica refinada e respeito ao tempo de cada caso.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <a href="#sobre">Sobre</a>
+      <a href="#areas">Áreas de atuação</a>
+      <a href="#processo">Atendimento</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <div class="footer-col">
+      <h4>Conecte-se</h4>
+      <a href="https://instagram.com/tamyresnantesadvogada" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/55[NUMERO]" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="mailto:[contato@dominio.com]">E-mail</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© [ANO] Tamyres Nantes — OAB/[UF] [000.000]. Todos os direitos reservados.</span>
+    <span class="oab-note">Conteúdo informativo. Em conformidade com o Provimento 205/2021 do CFOAB.</span>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('section').forEach(s => {
+    s.classList.add('reveal');
+    observer.observe(s);
+  });
+</script>
+
+</body>
+</html>
